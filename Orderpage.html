@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laco Automotive</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    h1 {
+      margin: 0;
+    }
+    
+    nav {
+      background-color: #f2f2f2;
+      padding: 10px;
+    }
+    
+    nav ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      text-align: center;
+    }
+    
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+    
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .banner {
+      background-image: url(jdm.png);
+      background-size: cover;
+      background-position: center;
+      height: 200px;
+    }
+    
+    .product {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      background-color: #fff;
+    }
+    
+    .product img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    
+    .product h2 {
+      margin: 0;
+    }
+    
+    .product p {
+      margin: 0;
+      color: #888;
+    }
+    
+    .product button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    .product button:hover {
+      background-color: #45a049;
+    }
+    
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    var addToCartButtons = document.querySelectorAll('.product button');
+
+    addToCartButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var product = this.parentNode;
+        var productName = product.querySelector('h2').textContent;
+        var price = product.querySelector('p').textContent;
+      });
+    });
+
+    var orderForm = document.getElementById('orderForm');
+    orderForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var address = document.getElementById('address').value;
+      var phone = document.getElementById('phone').value;
+
+      if (!name || !email || !address || !phone) {
+        alert('Please fill in all the required fields.');
+        return;
+      }
+
+      var products = document.querySelectorAll('.product');
+      var total = 0;
+      for (var i = 0; i < products.length; i++) {
+        var productPrice = parseFloat(products[i].querySelector('p').textContent.replace(/\D/g, ''));
+        total += productPrice;
+      }
+
+      var orderSummary = 'Order Summary:\n\n';
+      orderSummary += 'Name: ' + name + '\n';
+      orderSummary += 'Email: ' + email + '\n';
+      orderSummary += 'Address: ' + address + '\n';
+      orderSummary += 'Phone: ' + phone + '\n';
+      orderSummary += 'Total Amount: $' + total.toFixed(2) + '\n';
+
+      if (confirm(orderSummary + '\nAre you sure you want to submit the order?')) {
+        alert('Order placed!\n\n' + orderSummary);
+      }
+    });
+  });
+</script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOnY7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+<body>
+  <header>
+    <h1>Laco Automotive</h1>
+	
+	  <nav>
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="Prodgallery.html">Product Gallery</a></li>
+      <li><a href="Orderpage.html">Order Page</a></li>
+    </ul>
+  </nav>
+  
+  </header>
+ 
+  
+  <div class="banner"></div>
+  
+  <main>
+  	<form id="orderForm">
+      <h2>Customer Information</h2>
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+      </div>
+      <div>
+        <label for="address">Address:</label>
+        <input type="text" id="address" required>
+      </div>
+      <div>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" required>
+      </div>
+      <button  class="btn btn-outline-primary" type="submit">Submit Order</button>
+    </form>
+	
+    <div class="product">
+      <img src="nsx.png" alt="Product 1">
+      <h2>1991 Acura NSX</h2>
+      <p>Price: $84,999</p>
+      <button>Add to Cart</button>
+    </div>
+    
+    <div class="product">
+      <img src="240z.png" alt="Product 2">
+      <h2>1973 Datsun 240Z</h2>
+      <p>Price: $34,999</p>
+      <button>Add to Cart</button>
+    </div> 
+	
+    <div class="product">
+      <img src="ek9.png" alt="Product 1">
+      <h2>1997 Honda CIVIC TYPE R</h2>
+      <p>Price: $29,999</p>
+      <button>Add to Cart</button>
+    </div>
+    
+    <div class="product">
+      <img src="itr.png" alt="Product 2">
+      <h2>1996 INTEGRA TYPE R</h2>
+      <p>Price: $29,999</p>
+      <button>Add to Cart</button>
+    </div> 
+
+    <div class="product">
+      <img src="supra.png" alt="Product 1">
+      <h2>1996 Toyota SUPRA RZ-S</h2>
+      <p>Price: $79,995</p>
+      <button>Add to Cart</button>
+    </div>
+    
+    <div class="product">
+      <img src="fdrx7.png" alt="Product 2">
+      <h2>1992 Mazda RX7 FD</h2>
+      <p>Price: $51,995</p>
+      <button>Add to Cart</button>
+    </div> 
+	
+    <div class="product">
+      <img src="r32.png" alt="Product 1">
+      <h2>1991 Nissan SKYLINE GT-R</h2>
+      <p>Price: $69,995</p>
+      <button>Add to Cart</button>
+    </div>
+    
+    <div class="product">
+      <img src="r33.png" alt="Product 2">
+      <h2>1995 Nissan SKYLINE GT-R</h2>
+      <p>Price: $67,995</p>
+      <button>Add to Cart</button>
+    </div> 
+	
+    <div class="product">
+      <img src="r34.png" alt="Product 1">
+      <h2>2002 Nissan SKYLINE GT-R </h2>
+      <p>Price: $84,995</p>
+      <button>Add to Cart</button>
+    </div>
+    
+    <div class="product">
+      <img src="celica.png" alt="Product 2">
+      <h2>1994 Toyota CELICA</h2>
+      <p>Price: $33,995</p>
+      <button>Add to Cart</button>
+    </div> 
+
+  </main>
+  
+  <footer>
+    &copy; 2023 Laco Automotive. All rights reserved.
+  </footer>
+</body>
+
+</html>
